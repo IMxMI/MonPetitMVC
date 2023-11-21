@@ -1,0 +1,6 @@
+{% extends "layout.html.twig" %}
+{% block contenu %}
+    <h2>Liste des clients </h2>
+    {{  include('/blocks/arrayClients.html.twig') }}
+    <p> Nombre de clients trouvés : {{ Clients|length }} </p>
+{% endblock %}
