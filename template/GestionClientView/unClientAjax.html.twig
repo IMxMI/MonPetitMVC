@@ -4,10 +4,10 @@
         {% set idClient = unClient.getId() %}
     {% endif %}
     {% include 'blocks/clientRecherche.html.twig' %}
-    {% if unClient %}
-        {% include 'blocks/singleClient.html.twig' %}
-    {% else %}
-    {% endif %}
+    <div id='retour'>
+        {% block retour %}
+        {% endblock %}
+    </div>
 {% endblock %}
 {% block footer %}
     {{ parent () }}
