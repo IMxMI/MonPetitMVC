@@ -1,1 +1,20 @@
-{# empty Twig template #}
+{% extends "layout.html.twig" %}
+{% block contenu %}
+    {% if unClient %}
+        {% set idClient = unClient.getId() %}
+    {% endif %}
+    {% include 'blocks/clientRecherche.html.twig' %}
+    {% if unClient %}
+        {% include 'blocks/singleClient.html.twig' %}
+    {% else %}
+    {% endif %}
+{% endblock %}
+{% block footer %}
+    {{ parent () }}
+    <div class="text-center"> Fin de l'affichage</div>
+{% endblock %}
+
+<script type="text/javascript" src="assets/js/GestionClient/clientsFunctions.js"></script>
+<script type="text/javascript" src="assets/js/creationXHR.js"></script>
+// Ces deux instructions permettent d'appeler les fichiers JavaScript et ainsi de lancer les scripts.
+// Elles s'executent au chargement de la page.
