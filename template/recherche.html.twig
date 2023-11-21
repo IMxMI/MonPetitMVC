@@ -5,7 +5,7 @@
     <form action="?c=GestionClient&a=chercheUn" method="post">
         <div class="form-group">
             <label for="Numero du client">Id du client</label>
-            <select class="form-control" id="titre" name="id">
+            <select class="form-control" id="id" name="id">
                 {% for id in lesId %}
                     {% if idClient and idClient == id['id'] %}
                         <option selected>{{ id ['id'] }}</option>
