@@ -164,6 +164,15 @@ class GestionClientController {
         $vue = "GestionClientView\\filtreClients.html.twig";
         MyTwig::afficheVue($vue, $paramsVue);
     }
+    
+    public function chercheUnAjax($params): void{
+        $repository = Repository::getRepository("App\Entity\Client");
+        $ids = $repository->findIds();
+        $params['lesId'] = $ids;
+        $r = new ReflectionClass($this);
+        $vue = str_replace('Controller', 'View', $r->getShortName()) . "/unClientAjax.html.twig";
+        MyTwig::afficheVue($vue, $params);
+    }
 
     private function verifieEtPrepareCriteres(array $params): array {
         $args = array(
