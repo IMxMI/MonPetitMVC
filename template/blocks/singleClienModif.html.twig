@@ -1,0 +1,15 @@
+{% block retour %}
+    <div class='container'>
+        <form action='index.php?c=GestionClient&a=Modifierclient' method='post'>
+            <div class='form-group'>
+                <label for='titre'>Titre</label>
+                <select class='form-control' id='titre' name='titreCli'>
+                    <option {% if unClient.getTitreCli()=="Monsieur" %}selected{% endif %}>Monsieur</option>
+                    <option {% if unClient.getTitreCli()=="Madame" %}selected{% endif %}>Madame</option>
+                    <option {% if unClient.getTitreCli()=="Mademoiselle" %}selected{% endif %}>Mademoiselle</option>
+                </select>
+            </div>
+                    <div class='form-group'>
+                        <input type='hidden' name='id' value='{{ unClient.getId }}'>
+                        
+{% endblock %}
