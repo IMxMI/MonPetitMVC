@@ -1,6 +1,17 @@
-/* 
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Other/javascript.js to edit this template
- */
-
-
+function creationXHR() {
+    var resultat = null;
+    try {//test pour les navigateur : Mozilla, Opéra, ...
+        resultat = new XMLHttpRequest();
+    } catch (Erreur) {
+        try {//test pour les navigateurs Internet Explorer > 5.0
+            resultat = new ActiveXObject("Msxm12.XMLHTTP");
+        } catch (Erreur) {
+            try {//test pour le navigateur Internet Explorer 5.0
+                resultat = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (Erreur) {
+                resultat = null;
+            }
+        }
+    }
+    return resultat;
+}
