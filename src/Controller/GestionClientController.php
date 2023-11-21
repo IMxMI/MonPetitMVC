@@ -164,15 +164,6 @@ class GestionClientController {
         $vue = "GestionClientView\\filtreClients.html.twig";
         MyTwig::afficheVue($vue, $paramsVue);
     }
-    
-    public function chercheUnAjax($params): void{
-        $repository = Repository::getRepository("App\Entity\Client");
-        $ids = $repository->findIds();
-        $params['lesId'] = $ids;
-        $r = new ReflectionClass($this);
-        $vue = str_replace('Controller', 'View', $r->getShortName()) . "/unClientAjax.html.twig";
-        MyTwig::afficheVue($vue, $params);
-    }
 
     private function verifieEtPrepareCriteres(array $params): array {
         $args = array(
@@ -197,5 +188,21 @@ class GestionClientController {
             }
         }
         return $retour;
+    }
+
+    public function chercheUnAjax($params): void {
+        $ids = $this->repository->findIds();
+        $params['lesId'] = $ids;
+        $r = new ReflectionClass($this);
+        if (!array_key_exists('id', $params)) {
+            $r = new ReflectionClass($this);
+            $vue = str_replace('Controller', 'View', $r->getShortName()) . "/unclientAjax.html.twig";
+        } else {
+            $id = filter_var($params["id"], FILTER_VALIDATE_INT);
+            $unObjet = $this->repository->find($id);
+            $params ['unClient'] = $unObjet;
+            $vue = "blocks/singleClient.html.twig";
+        }
+        MyTwig::afficheVue($vue, $params);
     }
 }
